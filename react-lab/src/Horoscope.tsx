@@ -12,7 +12,7 @@ function Horoscope() {
     const [myMoon, setMyMoon] = useState("");
     const [myRising, setMyRising] = useState("");
     const [myHoroscope, setMyHoroscope] = useState([]);
-
+    const [responseHeader, setResponseHeader] = useState("")
 
     const requestHoroscope = () => {
         const toSend = {
@@ -47,11 +47,13 @@ function Horoscope() {
                 <TextBox label="Rising" onChange={setMyRising}/>
             </header>
             <AwesomeButton type="primary" size="large"
-                           onPress={requestHoroscope}>
+                           onPress={() => {requestHoroscope();
+                               setResponseHeader("Our analysis has determined that you are:")}}>
                 Submit
             </AwesomeButton>
+            <header>{responseHeader}</header>
             {myHoroscope.map((item) => (
-                <p> {item} </p>
+                <ul> {item} </ul>
             ))}
         </div>
     );
